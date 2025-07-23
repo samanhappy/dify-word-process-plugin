@@ -1,0 +1,35 @@
+author: samanhappy
+created_at: '2025-07-23T08:03:44.658609186Z'
+description:
+  en_US: Tools for processing Word content
+  zh_Hans: 利用 python-docx2txt 处理 Word 内容的工具
+icon: icon.svg
+label:
+  en_US: Word Process
+  zh_Hans: Word 处理
+meta:
+  arch:
+  - amd64
+  - arm64
+  runner:
+    entrypoint: main
+    language: python
+    version: '3.12'
+  version: 0.0.1
+name: word_process
+plugins:
+  tools:
+  - provider/word_process.yaml
+privacy: PRIVACY.md
+resource:
+  memory: 1048576
+  permission:
+    model:
+      enabled: true
+      llm: true
+    tool:
+      enabled: true
+tags:
+- utilities
+type: plugin
+version: 0.0.1

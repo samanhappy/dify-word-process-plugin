@@ -1,0 +1,26 @@
+description:
+  human:
+    en_US: A tool for extracting Word files to text and images
+    zh_Hans: 一个将Word文件提取为文本和图片的工具
+  llm: A tool that extracts text and images from a Word document
+extra:
+  python:
+    source: tools/word_extractor.py
+identity:
+  author: samanhappy
+  label:
+    en_US: Word Extractor
+    zh_Hans: Word提取器
+  name: word_extractor
+parameters:
+- form: llm
+  human_description:
+    en_US: Word file to extract text and images from
+    zh_Hans: 要提取文本和图片的Word文件
+  label:
+    en_US: Word Content
+    zh_Hans: Word 内容
+  llm_description: Word file content to be extracted
+  name: word_content
+  required: true
+  type: file

@@ -1,0 +1,19 @@
+extra:
+  python:
+    source: provider/word_process.py
+identity:
+  author: samanhappy
+  description:
+    en_US: Tools for processing Word content
+    pt_BR: Tools for processing Word content
+    zh_Hans: 利用 python-docx2txt 处理 Word 内容的工具
+  icon: icon.svg
+  label:
+    en_US: Word Process
+    pt_BR: Word Process
+    zh_Hans: Word 处理
+  name: word_process
+  tags:
+  - utilities
+tools:
+- tools/word_extractor.yaml

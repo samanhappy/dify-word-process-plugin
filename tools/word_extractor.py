@@ -4,6 +4,7 @@ import tempfile
 import os
 
 import docx2txt
+import httpx
 from dify_plugin.entities import I18nObject
 from dify_plugin.entities.tool import ToolInvokeMessage, ToolParameter
 from dify_plugin import Tool
@@ -50,9 +51,23 @@ class WordExtractorTool(Tool):
 
             original_filename = word_content.filename or "document"
 
+            # Get file blob with error handling for local files
+            try:
+                file_blob = word_content.blob
+            except httpx.UnsupportedProtocol as e:
+                # Handle case where URL is not a valid HTTP/HTTPS URL (e.g., local file upload)
+                if hasattr(word_content, '_blob') and word_content._blob is not None:
+                    file_blob = word_content._blob
+                else:
+                    raise ValueError(
+                        "Unable to access file content. For local file uploads, "
+                        "the file content should be directly available. "
+                        f"Original error: {str(e)}"
+                    )
+
             # Create a temporary file to save the Word document
             with tempfile.NamedTemporaryFile(delete=False, suffix=".docx") as temp_file:
-                temp_file.write(word_content.blob)
+                temp_file.write(file_blob)
                 temp_file_path = temp_file.name
 
             try:
